@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+    @keyframes blink {
+      from { border-color: transparent; }
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 170px; }
+    }
+    @keyframes wosh {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes movement {
+      from { left: -25%; }
+      to { left: 100%; }
+    }
+  </style>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- Container -->
+  <div class="container mx-auto h-full w-screen bg-white">
+    
+    <!-- Navigation -->
+    <div class="nav flex items-center justify-between border-b-2 border-[#c7b198] py-4 px-8 bg-white">
+      <img src="./media/logo.jpg" class="h-[10vmin] w-[10vmin]" alt="Logo">
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="#" class="tags text-black font-bold uppercase hover:border-b-2 border-black">Home</a>
+        <a href="#" class="tags text-black font-bold uppercase hover:border-b-2 border-black">About</a>
+        <a href="#" class="tags text-black font-bold uppercase hover:border-b-2 border-black">Services</a>
+        <a href="#" class="tags text-black font-bold uppercase hover:border-b-2 border-black">Contact</a>
+        <button id="login" class="py-2 px-4 rounded-full border-2 border-[#d7d7f8] bg-white hover:bg-[#d7d7f8] transition-all">Login</button>
+        <button id="signup" class="py-2 px-4 rounded-full bg-[#b9b9ec] hover:bg-[#a6d0e7] text-black">Sign Up</button>
+      </div>
+      <img src="menu-icon.png" id="menu" class="lg:hidden block h-8 w-8" alt="Menu">
+    </div>
+
+    <!-- Search Section -->
+    <div class="search mt-8 flex justify-center gap-4">
+      <input type="text" class="searchbar input w-[50vw] py-4 px-6 rounded-full border-2 border-[#c7b198] font-sans" placeholder="Search...">
+      <button class="searchbut btn w-[20vmin] py-4 px-6 rounded-full border-none bg-blueviolet font-bold text-white hover:bg-transparent hover:text-black transition-all">Search</button>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero flex flex-col items-center mt-12">
+      <h3 class="text-[#596e79] uppercase font-bold text-lg border-r-2 border-[#596e79] pr-4 animate-typing">Welcome to our library</h3>
+      <h1 class="uppercase text-[#596e79] font-extrabold text-[10vw] leading-none mt-4">Explore the World of Books</h1>
+      <div class="heroimg mt-8">
+        <img src="hero-image.png" class="w-[50vw] animate-wosh" alt="Hero Image">
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="border text-center text-[#596e79] uppercase my-20 mx-8">
+      <h1 class="font-bold text-[4vw]">Our Services</h1>
+      <p class="mt-4 text-black font-light">Discover a range of services to support your library experience.</p>
+    </div>
+    
+    <div class="services flex justify-around items-center mx-8">
+      <div class="card w-48 bg-gray-200 rounded-lg p-4 shadow-md text-center">
+        <div class="card-image bg-red-600 rounded-t-lg overflow-hidden">
+          <img src="service-image.png" class="object-cover h-full w-full" alt="Service">
+        </div>
+        <div class="category text-blue-600 uppercase font-bold mt-4">Category</div>
+        <div class="heading text-gray-600 font-semibold mt-2">Service Heading</div>
+      </div>
+      <!-- Repeat card as needed -->
+    </div>
+
+    <!-- Detail Section -->
+    <div class="detail flex flex-col items-center justify-center bg-gray-100 text-black text-center py-10">
+      <h2 class="text-[7vmin] border-b-2 border-[#c7b198]">Library Detail</h2>
+      <p class="w-[90vw] text-lg font-light mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque et nisl.</p>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer bg-blue-100 py-10 mt-12">
+      <div class="info flex justify-evenly text-[#1d5675]">
+        <div>
+          <h3 class="text-[4vmin] border-b-2 border-[#1d5675] mb-4">Contact Us</h3>
+          <a href="#" class="hover:text-blue-400">Email</a>
+          <a href="#" class="hover:text-blue-400">Phone</a>
+        </div>
+        <div>
+          <h3 class="text-[4vmin] border-b-2 border-[#1d5675] mb-4">Social Media</h3>
+          <div class="flex space-x-4">
+            <a href="#"><img src="facebook-icon.png" class="h-8 w-8" alt="Facebook"></a>
+            <a href="#"><img src="twitter-icon.png" class="h-8 w-8" alt="Twitter"></a>
+          </div>
+        </div>
+      </div>
+      <div class="copy text-center mt-8">© 2024 Your Library. All rights reserved.</div>
+    </div>
+    
+  </div>
+
+</body>
+</html>
