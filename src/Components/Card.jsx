@@ -5,7 +5,7 @@ function Card({ src, user, detail,page }) {
   return (
     <>
       <div className="group relative cursor-pointer overflow-hidden
-         bg-white px-6 pt-10 pb-8 shadow-xl ring-1 mx-9 ring-gray-900/5 transition-all 
+         bg-[#FFFFFF] px-6 pt-10 pb-8 shadow-xl ring-1 mx-9 ring-gray-900/5 transition-all 
          duration-300 hover:-translate-y-1 hover:shadow-2xl   sm:w-2/4
          rounded-lg sm:mx-7 my-3">
             <span className="absolute top-10 z-0 h-20 w-20 rounded-full
