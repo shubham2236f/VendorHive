@@ -14,37 +14,38 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title,slug,content,featuredImage,
-        status,userId}){
+    async createPost({Name,Number,Occupation,Skills,About,Experience}){
             try {
                return await this.databases.createDocument(
                     conf.appwriteDatabaseId,
                     conf.appwriteCollectionId,
-                    slug,
+                    ID.unique(),
                     {
-                        title,
-                        content,
-                        featuredImage,
-                        status,
-                        userId,
+                        Name,
+                        Number,
+                        Occupation,
+                        Skills,
+                        About,
+                        Experience
                     }
                 )
             } catch (error) {
-                console.log("hii",error)
+                console.log(error);
             }
     }
 
-    async updatePost(slug,{title,content,featuredImage,status}){
+    async updatePost(Number,{Name,About,Skills,Occupation,Experience}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                Number,
                 {
-                    title,
-                    content,
-                    featuredImage,
-                    status
+                    Name,
+                    About,
+                    Skills,
+                    Occupation,
+                    Experience
                 }
             )
         } catch (error) {
@@ -67,7 +68,7 @@ export class Service{
         }
     }
 
-    async getPost(slug){
+    async getPost(Number){
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,

@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import './App.css'
 
-import Header from './Components/Header/Header.jsx'
-import Home from './Components/Home.jsx'
-import Profile from './Components/Profile.jsx'
+import Header2 from './Components/Header/Header2.jsx'
 import { Outlet } from 'react-router-dom'
+import Footer from './Components/Footer.jsx'
+import Loader from './Components/Loader/Loader.jsx'
+import Login from './Components/Login.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Header/>
+    <Header2/>
    <Outlet/>
+   <Footer/>
+ 
     </>
   )
 }

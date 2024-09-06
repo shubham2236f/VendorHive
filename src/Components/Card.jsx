@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Card({ src, user, detail,page }) {
+function Card({ src, detail,page }) {
   return (
     <>
       <div className="group relative cursor-pointer overflow-hidden
@@ -23,7 +23,7 @@ function Card({ src, user, detail,page }) {
                     <p>
                     <Link
                         to={`/${page}`}
-                        className="text-sky-500 transition-all duration-300 group-hover:text-white"
+                        className="text-sky-500 transition-all duration-300 group-hover:text-white animate-pulse"
                     >
                         Read the docs &rarr;
                     </Link>

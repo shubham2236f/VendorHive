@@ -5,4 +5,15 @@
     from{width: 0px;}
     to{width: 170px;}
       }
+
+      @keyframes movement{
+        from{left:-25%;}
+        to{left: 100%;}
+      }
+ .movecycle{
+  animation: movement linear 50s infinite;
+ }
+ .movecar{
+  animation: movement linear 25s infinite;
+ }
   
