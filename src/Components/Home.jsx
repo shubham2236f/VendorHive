@@ -39,7 +39,7 @@ function Home() {
     <Dircard step="Step2" src={list} title="Get list of vendors/workers" detail="when you search for something you
      get list of search realated data,select from them."/>
     <Dircard step="Step3" src={contact} title="Contact the selected one" detail="After select one vendor/worker
-    contact them through cantact detail."/>
+    contact them through contact detail."/>
     </div>
 
     <div className='w-screen'>
