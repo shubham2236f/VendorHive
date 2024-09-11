@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Card({ src, detail,page }) {
   return (
     <>
-      <div className="group relative cursor-pointer overflow-hidden
+      <div className="card group relative cursor-pointer overflow-hidden
          bg-[#FFFFFF] px-6 pt-10 pb-8 shadow-xl ring-1 mx-9 ring-gray-900/5 transition-all 
          duration-300 hover:-translate-y-1 hover:shadow-2xl   sm:w-2/4
          rounded-lg sm:mx-7 my-3">

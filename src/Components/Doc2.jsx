@@ -2,8 +2,8 @@ import React from 'react'
 
 function Doc2() {
   return (
-    <div>
-        <p>
+    <div className='h-[70vh] w-[95vw] mt-16 mx-4 text-center'>
+        <p className='text-left font-semibold'>
         Through the "Vendor Grouping" website, users can significantly enhance their professional opportunities and profitability. By creating a detailed profile, small vendors and workers can showcase their skills, services, experience, and availability to a broad audience of potential clients and employers. This visibility increases their chances of being hired for jobs that match their expertise. Additionally, the platform's secure payment processing and review system build trust and credibility, helping users establish a solid reputation. As a result, vendors and workers can attract more business, set competitive prices, and ultimately increase their earnings and professional growth.
 
 The website also offers a unique advantage by providing a centralized location for vendors and workers to manage their business interactions. Instead of relying on multiple channels or word-of-mouth referrals, users can use the platform’s integrated tools to handle all aspects of their business, from initial client inquiries to final payment. This streamlined approach saves time and reduces administrative overhead, allowing vendors and workers to focus more on delivering quality services. The review and rating system further encourages high standards by motivating users to maintain excellent service to attract positive feedback, which in turn can lead to more hiring opportunities.

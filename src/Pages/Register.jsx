@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState,useEffect } from 'react';
 import service from '../appwrite/config';
+import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { register } from '@/store/authSlice';
+import authservice from '@/appwrite/auth';
 function Register() {
+  const regStatus = useSelector((state)=>state.auth.regStatus)
+  const [userId, setUserId] = useState("");
+  const [profileimgId,setprofileimgId] = useState("")
+  const [selectedProfile, setSelectedProfile] = useState("");
+  const dispatch =  useDispatch()
+  const navigate = useNavigate()
   const [profile, setProfile] = useState({
     Name: '',
     Number:'',
     Occupation: '',
     Skills: '',
     About: '',
-    Experience: '',
+    Location: '',
+    Visit:'',
   });
+  const handleProfile=(e)=>{
+    setSelectedProfile(e.target.files[0]);
+}
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,23 +34,29 @@ function Register() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(
-        profile.Name,
-          profile.Number,
-          profile.Occupation,
-          profile.Skills,
-          profile.About,
-          profile.Experience
-    );
     
     try{
-        await service.createPost(
-          profile.Name,
-          profile.Number,
-          profile.Occupation,
-          profile.Skills,
-          profile.About,
-          profile.Experience)
+        const profileimg = selectedProfile ? await service.uploadFile(selectedProfile) : null;
+        if(profileimg){
+          const post = await service.createPost(
+            profile.Name,
+            profile.Number,
+            profile.Occupation,
+            profile.Skills,
+            profile.About,
+            profile.Location,
+              profileimg.$id,
+              userId,
+              profile.Visit
+            )
+            dispatch(register({regStatus:true}));
+            console.log(regStatus);
+
+            console.log(post);
+            
+            navigate("/");
+        }
+        
     }
     catch(e){
       console.log(e);
@@ -45,6 +64,25 @@ function Register() {
     
     
   };
+
+  const getUser= useCallback( async()=>{
+    try {
+        const userData = await authservice.getCurrentUser()
+        if(userData){
+            setUserId(userData.$id)
+        }
+    } catch (error) {
+        console.log("ERROR: in featch data in register page", error);
+    }
+    },[userId,handleSubmit])
+
+  useEffect(() => {
+    getUser()
+    if (regStatus===true) {
+      navigate("/")
+    }
+  }, [getUser])
+
   return (
     <div>
     <div className="container mx-auto p-8">
@@ -59,6 +97,7 @@ function Register() {
             value={profile.Name}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
@@ -70,6 +109,7 @@ function Register() {
             value={profile.Number}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border  border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
@@ -81,6 +121,7 @@ function Register() {
             value={profile.Occupation}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
@@ -92,6 +133,7 @@ function Register() {
             value={profile.Skills}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
@@ -102,16 +144,43 @@ function Register() {
             value={profile.About}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Experience:</label>
+          <label className="block text-gray-700">Location:</label>
           <textarea
-            name="Experience"
-            value={profile.Experience}
+            name="Location"
+            value={profile.Location}
             onChange={handleChange}
             className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700">Visit Charge:</label>
+          <input
+            type="text"
+            name="Visit"
+            value={profile.Visit}
+            onChange={handleChange}
+            className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700">Profile photo:</label>
+          <input
+          type='file'
+            id='featuredDoc'
+            name="featuredDoc"
+            onChange={handleProfile}
+            accept="image/png, image/jpg"
+            className="mt-1 block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4"
+            required={true}
           />
         </div>
 
@@ -131,9 +200,10 @@ function Register() {
             <p><strong>Name:</strong> {profile.Name}</p>
             <p><strong>Number:</strong> {profile.Number}</p>
             <p><strong>Occupation:</strong> {profile.Occupation}</p>
+            <p><strong>Visit Charge:</strong> {profile.Visit}</p>
             <p><strong>Skills:</strong> {profile.Skills}</p>
             <p><strong>About Me:</strong> {profile.About}</p>
-            <p><strong>Experience:</strong> {profile.Experience}</p>
+            <p><strong>Location:</strong> {profile.Location}</p>
           </div>
         </div>
       )}

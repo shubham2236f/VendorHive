@@ -1,9 +1,10 @@
 import React from 'react'
-
+import vege from './Media/vege.jpg'
+import decoration from './Media/decoration.jpg'
 function Doc1() {
   return (
-    <div>
-        <p>
+    <div className='h-fit flex mt-16 mx-4 w-[95vw] text-center'>
+        <p className='text-left font-semibold'>
         For hiring entities, such as businesses and individuals 
         seeking specific services, the "Vendor Grouping" website offers a 
         streamlined and efficient way to find and hire qualified vendors and workers. 
@@ -17,7 +18,7 @@ function Doc1() {
 
 
         </p>
-    </div>
+        </div>
   )
 }
 

@@ -2,15 +2,17 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import Home from './Components/Home.jsx'
+import Home from './Pages/Home.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Store from "./store/Store.js"
 import { Provider } from 'react-redux'
-import Profile from './Components/Profile.jsx'
+import Profile from './Pages/Profile.jsx'
+import Feedback from './Components/Feedback.jsx'
 import Login from './Components/Login.jsx'
 import Doc1 from './Components/Doc1.jsx'
 import Doc2 from './Components/Doc2.jsx'
-import Register from './Components/Register.jsx'
+import Register from './Pages/Register.jsx'
+import VendorsList from './Pages/VendorsList.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,10 +24,27 @@ const router = createBrowserRouter([
             element: <Home />,
         },
         {
-          path: "/profile",
-          element: <Profile/>,
+          path: "/Vendors",
+          element: <VendorsList/>,
       },
+      {
+        path:"/feedback",
+        element:<Feedback/>
+      },
+      {
+        path:"/doc1",
+        element:<Doc1/>
+      },
+      {
+        path:"/doc2",
+        element:<Doc2/>
+      }
+       
     ],
+},
+{
+  path: "/profile",
+  element: <Profile/>,
 },
 {
     path:"/register",

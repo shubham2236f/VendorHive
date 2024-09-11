@@ -1,7 +1,14 @@
 import React from 'react'
 import cycle from "./Media/cyclist.gif"
 import car from "./Media/volks.gif"
+import { Link } from 'react-router-dom'
 import footerbg from "./Media/footer_bg.png"
+
+const message =
+    "Hello, I came from your webiste.";
+const whatsappUrl =
+    "https://wa.me/" + "+9163862063" + "?text=" + encodeURIComponent(message);
+
 function Footer() {
   return (
         <footer className="bg-blue-100 sm:py-10">
@@ -26,22 +33,34 @@ function Footer() {
                   <u><h2 className="mb-6 text-sm font-bold text-black uppercase ">
                     Follow us
                   </h2></u>
-                  <ul className="text-gray-700 font-medium">
+                  <ul className="text-black font-medium">
                     <li className="mb-4">
                       <a
-                        href="https://github.com/themesberg/flowbite"
+                        href="https://github.com/shubham2236f"
                         className="hover:underline"
                       >
                         Github
                       </a>
                     </li>
-                    <li>
+                    <li className='mb-4'>
                       <a
                         href="https://discord.gg/4eeurUVvTy"
                         className="hover:underline"
                       >
-                        Discord
+                        Instagram
                       </a>
+                    </li>
+                    <li className='mb-4'>
+                      <Link to="/feedback"
+                      className="hover:underline">
+                       Feedback
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={whatsappUrl}
+                      className="hover:underline">
+                       whatsapp Us
+                      </Link>
                     </li>
                   </ul>
                 </div>

@@ -6,6 +6,7 @@ import {Link,useNavigate} from "react-router-dom"
 import {useSelector} from "react-redux"
 import Search from '../Search'
 import authservice from "@/appwrite/auth";
+import RegisterAuth from "../RegisterAuth";
 
 function Header2() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -25,21 +26,10 @@ function Header2() {
       name: 'Home',
       slug: "/",
       
-    }, 
-
+    },
   {
-      name: "Register",
-      slug: "/register",
-      
-  },
-  {
-    name: "Profile",
-    slug: "/Profile",
-   
-  },
-  {
-    name: "Review",
-    slug: "/Review",
+    name: "Vendors",
+    slug: "/Vendors",
    
   },
   ]
@@ -52,7 +42,7 @@ function Header2() {
             {navItems.map((items)=>
             items ? (
               <li key={items.name} className='mr-5 font-semibold text-[3vmin] '>
-                <Link className='hover:border-b-2 border-blue-400 p-1 hover:bg-slate-100 ' activeStyle={{ color: 'red' }} to={items.slug}>
+                <Link className='hover:border-b-2 border-blue-400 p-1 hover:bg-slate-100 ' to={items.slug}>
                 {items.name}
                 </Link>
               </li>
@@ -62,7 +52,7 @@ function Header2() {
             <li>
                 <button
                         type="button"
-                        className="w-full rounded-md px-3 py-2  font-semibold text-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-blue-400 hover:text-white"
+                        className="w-full rounded-md px-2 py-1  font-semibold text-[3vmin] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-blue-400 hover:text-white"
                         onClick={() => {
                         handleLogout();
                         toggleMenu();
@@ -71,12 +61,15 @@ function Header2() {
                         Logout
                     </button>
                 </li>
+                
             </ul>
-            <div className="md:hidden">
+            <RegisterAuth/>
+            <div className="md:hidden ml-2 mt-2">
                 <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
             </div>
+            
             {isMenuOpen && (
-                <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
+                <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden ">
                 <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                     <div className="px-5 pb-6 pt-5">
                     <div className="flex items-center justify-between">

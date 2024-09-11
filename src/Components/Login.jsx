@@ -1,6 +1,4 @@
 import React from 'react'
-import bg_img from './Media/bg.avif'
-import logimg from './Media/login.png'
 import google from './Media/google.png'
 import authservice from '../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +14,7 @@ function Login() {
     bg-cover bg-no-repeat flex justify-center items-center'>
           <div className='text-center absolute backdrop-blur-md backdrop-contrast-50 py-1 text-white 
           top-0 font-semibold text-4xl w-[100vw]'>
-        <h1 >vendos Hive</h1>
+        <h1 >vendors Hive</h1>
     </div>
         <div className='backdrop-blur-md flex max-[400px]:h-fit border-white border-2 
         rounded-lg h-[50vh]'>
