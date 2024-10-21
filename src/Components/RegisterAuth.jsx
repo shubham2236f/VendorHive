@@ -1,19 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate,Link } from 'react-router-dom'
+import { Query } from 'appwrite'
+import service from '@/appwrite/config'
+import authservice from '@/appwrite/auth'
 
 function RegisterAuth() {
     const status = useSelector((state)=>state.auth.regStatus)
     const navigate = useNavigate()
-    const handleClick = ()=>{
-      console.log(status);
-      
-        if(status==true){
-            navigate("/Profile")
-        }
-    else{
-            navigate("/register")
-    }
+    const [userId , setuserId]  = useState("")
+    const handleClick = async()=>{
+      try {
+       const response =  await authservice.getCurrentUser()
+       const currentUserId = response.$id;
+
+        const auth = await service.getPosts([Query.search('userId', currentUserId)])
+        
+      if(auth){
+              console.log(auth);
+              
+              navigate("/Profile")
+          }
+      else{
+              navigate("/register")
+      }
+      } catch (error) {
+        console.error("Error fetching user or auth:", error);
+      }
         }
   return (
     <div>

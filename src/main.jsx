@@ -7,11 +7,9 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Store from "./store/Store.js"
 import { Provider } from 'react-redux'
 import Profile from './Pages/Profile.jsx'
-import Feedback from './Components/Feedback.jsx'
-import Login from './Components/Login.jsx'
-import Doc1 from './Components/Doc1.jsx'
-import Doc2 from './Components/Doc2.jsx'
+import {Feedback,Login,Doc1,Doc2, RequestForm, RequestPage} from './Components/index.js'
 import Register from './Pages/Register.jsx'
+import VendorProfile from './Pages/VendorProfile.jsx'
 import VendorsList from './Pages/VendorsList.jsx'
 
 const router = createBrowserRouter([
@@ -38,6 +36,14 @@ const router = createBrowserRouter([
       {
         path:"/doc2",
         element:<Doc2/>
+      },
+      {
+        path:"/VendorProfile/:userId",
+        element:<VendorProfile/>
+      },
+      {
+        path:"/RequestForm/:userId",
+        element:<RequestForm/>
       }
        
     ],
@@ -45,6 +51,10 @@ const router = createBrowserRouter([
 {
   path: "/profile",
   element: <Profile/>,
+},
+{
+  path: "/Requests",
+  element: <RequestPage/>,
 },
 {
     path:"/register",

@@ -4,14 +4,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     status : false,
     userData : null,
-    regStatus : false,
+    regStatus : JSON.parse(localStorage.getItem('regStatus')) || false,
+    searchKey : null,
 }
 
 const authSlice = createSlice({
     name : "auth",
-    initialState:{
-        regStatus: JSON.parse(localStorage.getItem('regStatus')) || false,
-    },
+    initialState,
     reducers:{
         login : (state,action)=>{
             state.status = true,
@@ -26,9 +25,14 @@ const authSlice = createSlice({
            state.regStatus = action.payload.regStatus
            localStorage.setItem('regStatus', JSON.stringify(state.regStatus));
         },
+        search : (state,action)=>{
+            console.log('Action received in reducer:', action),
+            state.status = true,
+            state.searchKey = action.payload.searchKey
+        }
     }
 });
 
-export const {login,logout,register} = authSlice.actions;
+export const {login,logout,register,search} = authSlice.actions;
 
 export default authSlice.reducer;

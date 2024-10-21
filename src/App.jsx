@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-
-import Header2 from './Components/Header/Header2.jsx'
+import { Header2,Footer,ScrollToTop } from './Components/index.js'
 import { Outlet } from 'react-router-dom'
-import Footer from './Components/Footer.jsx'
-import Loader from './Components/Loader/Loader.jsx'
-import Login from './Components/Login.jsx'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +10,7 @@ function App() {
   return (
     <>
     <Header2/>
+    <ScrollToTop/>
    <Outlet/>
    <Footer/>
  

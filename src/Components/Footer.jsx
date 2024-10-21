@@ -2,7 +2,7 @@ import React from 'react'
 import cycle from "./Media/cyclist.gif"
 import car from "./Media/volks.gif"
 import { Link } from 'react-router-dom'
-import footerbg from "./Media/footer_bg.png"
+import { Briefcase } from 'lucide-react';
 
 const message =
     "Hello, I came from your webiste.";
@@ -17,12 +17,8 @@ function Footer() {
             <div className="md:flex md:justify-between">
               <div className="mb-6 md:mb-0">
                 <a href="C:\Users\shubham\Desktop\React\hireup\src\Components\Home.jsx" className="flex items-center">
-                  <img
-                    src="https://cdn4.iconfinder.com/data/icons/apiary-cartoon-1/512/val41_14-512.png"
-                    className="h-16 w-20 me-3"
-                    alt="hireup/src/Components/Home.jsx"
-                  />
-                  <span className="self-center text-2xl font-bold whitespace-nowrap text-red-600 ">
+                  <span className="self-center text-3xl flex gap-1 font-bold whitespace-nowrap">
+                    <Briefcase className='h-11 w-11'/>
                     Vendor Hive
                   </span>
                 </a>
@@ -44,7 +40,7 @@ function Footer() {
                     </li>
                     <li className='mb-4'>
                       <a
-                        href="https://discord.gg/4eeurUVvTy"
+                        href="#"
                         className="hover:underline"
                       >
                         Instagram

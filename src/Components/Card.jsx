@@ -15,7 +15,7 @@ function Card({ src, detail,page }) {
                 bg-sky-500 transition-all duration-300 group-hover:bg-sky-400">
                     <img  className="bg-transparent" src={src} alt="#" />
                 </span>
-                <div className="space-y-6 pt-5 font-bold text-base leading-7 text-gray-600 transition-all duration-300
+                <div id="detail" className="space-y-6 pt-5 font-bold text-base leading-7 text-gray-600 transition-all duration-300
                 group-hover:text-white/90">
                     <p>{detail}</p>
                 </div>

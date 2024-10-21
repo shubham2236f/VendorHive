@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import React, { useState } from 'react'
 import {Link,useNavigate} from "react-router-dom"
 import {useSelector} from "react-redux"
-import Search from '../Search'
+import Search from '../SearchBar'
 import authservice from "@/appwrite/auth";
 import RegisterAuth from "../RegisterAuth";
 
@@ -35,7 +35,7 @@ function Header2() {
   ]
   return (
     <div className=' flex w-screen bg-[#FFFFFF] py-4 px-4 z-50 shadow-md justify-between items-center fixed left-0 top-0'>
-        <div className='mx-8'><Search/></div>
+        <div className=''><Search/></div>
         
           <div className='flex justify-between'>
             <ul className='flex max-[400px]:hidden justify-center items-center'>

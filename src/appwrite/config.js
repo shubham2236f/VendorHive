@@ -1,3 +1,4 @@
+
 import conf from '../conf/conf.js'
 import {Client, ID, Databases, Storage, Query} from "appwrite"
 
@@ -38,18 +39,79 @@ export class Service{
             }
     }
 
-    async updatePost(Number,{Name,About,Skills,Occupation,Experience}){
+    async createReview(Id,userName,Rating,Date,comment,vendorId){
+        try {
+           return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId_2,
+                ID.unique(),
+                {
+                    Id,
+                    userName,
+                    Rating,
+                    Date,
+                    comment,
+                    vendorId
+                }
+            )
+        } catch (error) {
+            console.log(error);
+        }
+}
+
+async createFeedback(Name,Email,Feedback){
+    try {
+       return await this.databases.createDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId_3,
+            ID.unique(),
+            {
+                Name,
+                Email,
+                Feedback
+            }
+        )
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async createRequest(Name,Number,Location,Description,userId){
+    try {
+       return await this.databases.createDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId_4,
+            ID.unique(),
+            {
+                Name,
+                Number,
+                Location,
+                Description,
+                userId
+            }
+        )
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+    async updatePost(slug,Name,Number,Occupation,Skills,About,Location,profileimgId,userId,Visit){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                Number,
+                slug,
                 {
                     Name,
-                    About,
-                    Skills,
-                    Occupation,
-                    Experience
+                    Number,
+                        Occupation,
+                        Skills,
+                        About,
+                        Location,
+                        Visit,
+                        profileimgId,
+                        userId
                 }
             )
         } catch (error) {
@@ -86,12 +148,39 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status","active")]){
+    async getPosts(queries = []){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries 
+            )
+            
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    async getReview(queries = []){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId_2,
+                queries
+            )
+            
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+    async getRequest(queries = []){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId_4,
+                queries
             )
             
         } catch (error) {
@@ -127,10 +216,10 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(profileimgId){
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
-            fileId
+            profileimgId
         )
     }
 }

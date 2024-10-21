@@ -1,9 +1,9 @@
 .example{
-    animation: example1 ease-in 2s ;
+    animation: example1 ease-in 2s;
 }
  @keyframes example1 {
     from{width: 0px;}
-    to{width: 170px;}
+    to{width:170px;}
       }
 
       @keyframes movement{
