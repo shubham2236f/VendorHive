@@ -1,4 +1,6 @@
 import {UserRoundPen} from "lucide-react"
+import { useNavigate } from "react-router-dom"
+
 const testimonials = [
   {
     quote: "This platform has revolutionized the way we work. It's intuitive, powerful, and a joy to use every day.",
@@ -21,6 +23,8 @@ const testimonials = [
 ]
 
 export default function FeedbackReview() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-14 bg-gradient-to-b from-gray-100 to-white">
       <div className="container mx-auto px-4">
@@ -40,7 +44,8 @@ export default function FeedbackReview() {
           ))}
         </div>
         <div className="text-center mt-3">
-          <button className="bg-blue-500 hover:bg-blue-400 text-white rounded-lg animate-pulse p-1 font-semibold">
+          <button className="bg-blue-500 hover:bg-blue-400 text-white rounded-lg animate-pulse p-1 font-semibold"
+          onClick={()=>navigate("/feedback")}>
             Feedback
           </button>
         </div>

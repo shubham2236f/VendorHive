@@ -1,16 +1,35 @@
-import { useState,useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useState,useEffect,useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import authservice from '@/appwrite/auth';
 import service from '@/appwrite/config'
 import { Query } from 'appwrite';
-import { Star, MessageCircle, Briefcase } from 'lucide-react'
-
-
+import {MessageCircle } from 'lucide-react'
+import { login } from '@/store/authSlice.js'
 
 export default function VendorsList({className}) {
   const [Posts,setPosts] = useState([])
+  const [auth,setAuth] = useState(false)
   const searchKey = useSelector((state)=>state.auth.searchKey);
   const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const userLogin = useCallback(async()=>{
+    try{
+      const userdata = await authservice.getCurrentUser()
+      if(userdata){
+        dispatch(login(userdata))
+        setAuth(true)
+      }
+    }
+    catch(e){
+      console.error(e)
+    }
+  },[dispatch,navigate] );
+
+  useEffect(()=>{
+    userLogin()
+  },[userLogin])
 
   const fetchPosts = async () => {
     try {
@@ -48,48 +67,33 @@ export default function VendorsList({className}) {
   }
 
   if(Posts.length === 0){
-    return <div className='mt-32 mb-10 font-semibold text-center'>No data found</div>
+
+    return (
+      <>
+      {auth ? (
+        <div className='w-full h-[80vh] flex justify-center items-center font-bold text-xl'>
+          <h1 className='border-2 p-2 rounded-lg border-slate-700 shadow-md'>Data Not Found</h1></div>
+      ) : (
+        <div className='w-full h-[80vh] flex justify-center items-center'>
+        <button
+          type="button"
+          className=" mt-24 rounded-md px-2 py-1 font-semibold text-[3vmin] focus-visible:outline 
+          bg-blue-500 text-white
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black
+           hover:bg-blue-400"
+          onClick={() => navigate("/Login")}
+        >
+          Login To Get Service
+        </button>
+        </div>
+      )}
+      </>  
+      )
   }
   return (
     <>
-        {/* <div className={`${className} max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8`}>
-          <ul className="divide-y divide-gray-200">
-            {Posts.map((Post) => (
-              <li key={Post.userId} className="py-6 flex mb-2 bg-gradient-to-l from-blue-100 to-blue-50 rounded-lg">
-                <button onClick={()=>handleButtonClick(Post)}
-                  className='w-full'>
-                <div className="flex-shrink-0 w-[20vmin] h-[20vmin] border border-gray-200 rounded-md overflow-hidden">
-                  <img
-                    src={service.getFilePreview(Post.profileimgId)}
-                    alt={Post.Name}
-                    className="w-full h-full object-center object-cover"
-                  />
-                </div>
-                <div className="ml-4 flex-1 flex flex-col">
-                  <div>
-                    <div className=" text-base font-medium text-gray-900">
-                      <h3>
-                        <a href="#">{Post.Name}</a>
-                        <p className="mt-1 text-sm text-gray-500">{Post.Location}</p>
-                      </h3>
-                      <button 
-                      onClick={()=>handleButtonClick(Post)}
-                      className='p-1 relative top-0 left-0 bg-blue-600 text-white mr-4 rounded-sm hover:bg-blue-400'>Get Now
-                      </button>
-                      
-                    </div>
-                  </div>
-                </div>
-              </button>  
-              </li>
-            ))}
-          </ul>
-        </div>
-    */}
-
-
 <section className="bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-[300px]:p-0">
         <h2 className="text-3xl font-bold text-center mb-8 mt-4">Featured Vendors</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Posts.map((vendor) => (
@@ -109,17 +113,6 @@ export default function VendorsList({className}) {
                   </div>
                 </div>
                 <p className="text-gray-600 mb-4">{vendor.About}</p>
-                {/* <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 text-yellow-400 mr-1" />
-                    <span className="font-semibold">{vendor.rating.toFixed(1)}</span>
-                    <span className="text-gray-500 ml-1">({vendor.reviews} reviews)</span>
-                  </div>
-                  <div className="flex items-center text-gray-500">
-                    <Briefcase className="h-5 w-5 mr-1" />
-                    <span>{vendor.projectsCompleted} projects</span>
-                  </div>
-                </div> */}
                 <div className="flex justify-between items-center">
                   <button
                   onClick={()=>handleButtonClick(vendor)}

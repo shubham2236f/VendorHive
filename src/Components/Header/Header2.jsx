@@ -1,16 +1,36 @@
 
 import { Menu, X } from "lucide-react";
-
-import React, { useState } from 'react'
+import React, { useEffect, useState,useCallback } from 'react'
 import {Link,useNavigate} from "react-router-dom"
-import {useSelector} from "react-redux"
 import Search from '../SearchBar'
+import { login } from '@/store/authSlice.js'
 import authservice from "@/appwrite/auth";
 import RegisterAuth from "../RegisterAuth";
+import { useDispatch } from 'react-redux'
 
 function Header2() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [auth,setAuth] = useState(false)
+
+  const userAuth = useCallback(async()=>{
+    try{
+      const userdata = await authservice.getCurrentUser();
+      if(userdata){
+        dispatch(login(userdata))
+        console.log(userdata);  
+        setAuth(true)
+      }
+    }
+    catch(e){
+      console.error(e)
+    }
+  },[dispatch] );
+
+  useEffect(()=>{
+    userAuth();
+  })
 
    const handleLogout = async()=>{
     await authservice.logout()
@@ -20,7 +40,6 @@ function Header2() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-  const authStatus = useSelector((state)=>state.auth.status)
   const navItems = [
     {
       name: 'Home',
@@ -49,18 +68,29 @@ function Header2() {
               
             ) : null
             )}
-            <li>
-                <button
-                        type="button"
-                        className="w-full rounded-md px-2 py-1  font-semibold text-[3vmin] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-blue-400 hover:text-white"
-                        onClick={() => {
-                        handleLogout();
-                        toggleMenu();
-                        }}
-                    >
-                        Logout
-                    </button>
-                </li>
+             <li className="mr-3">
+            {auth ? (
+              <button
+                type="button"
+                className=" w-full rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white 
+                shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                 focus-visible:outline-black hover:bg-blue-500 hover:text-white "
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="w-full rounded-md px-2 py-1 font-semibold text-[3vmin] focus-visible:outline 
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black
+                 hover:bg-blue-400 hover:text-white"
+                onClick={() => navigate("/Login")}
+              >
+                Login
+              </button>
+            )}
+          </li>
                 
             </ul>
             <RegisterAuth/>
@@ -107,16 +137,30 @@ function Header2() {
                         ))}
                         </nav>
                     </div>
-                    <button
+
+                    <li>
+                    {auth ? (
+                      <button
                         type="button"
-                        className="mt-4 w-full rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-blue-500 hover:text-white"
-                        onClick={() => {
-                        handleLogout();
-                        toggleMenu();
-                        }}
-                    >
+                        className="w-full rounded-md px-2 py-1 font-semibold bg-blue-400 text-[5vmin] 
+                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                         focus-visible:outline-black hover:bg-blue-300 text-white"
+                        onClick={handleLogout}
+                      >
                         Logout
-                    </button>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="w-full rounded-md px-2 py-1 font-semibold bg-blue-400 text-[5vmin] 
+                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                         focus-visible:outline-black hover:bg-blue-300 text-white"
+                        onClick={() => navigate("/Login")}
+                      >
+                        Login
+                      </button>
+                    )}
+                  </li>
                     </div>
                 </div>
                 </div>

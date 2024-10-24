@@ -31,13 +31,13 @@ const StarRating = ({ Rating, setRating = null }) => {
 
 const ReviewCard = ({ review }) => {
   return (
-    <div className="border border-gray-300 rounded-lg p-4 mb-4">
+    <div className="border border-gray-300 rounded-lg mb-4">
       <div className="flex items-center mb-2">
-        <div className="w-10 h-10 bg-gray-300 rounded-full mr-3 flex items-center justify-center font-bold">
+        <div className="w-10 h-10 bg-gray-300 rounded-full mx-3 flex items-center justify-center font-bold">
           {review.userName.charAt(0)}
         </div>
         <div>
-          <h3 className="font-bold">{review.userName}</h3>
+          <h3 className="font-bold m-2">{review.userName}</h3>
           <div className="flex items-center">
             <StarRating Rating={review.Rating} />
             <span className="ml-2 text-sm text-gray-600">
@@ -46,7 +46,7 @@ const ReviewCard = ({ review }) => {
           </div>
         </div>
       </div>
-      <p className="text-gray-800">{review.comment}</p>
+      <p className="text-gray-800 m-3">{review.comment}</p>
     </div>
   );
 };
@@ -240,7 +240,7 @@ export default function Review({vendorId}) {
             </button>
           </div>
 
-        <div className='flex justify-evenly items-center max-[600px]:flex-col'>
+        <div className='flex justify-center items-center max-[600px]:flex-col'>
           <div className=' w-2/4 m-4 max-[600px]:w-full'>
           {activeTab === 'reviews' ? (
             <ReviewList reviews={reviews} />

@@ -18,7 +18,6 @@ function RegisterAuth() {
         
       if(auth){
               console.log(auth);
-              
               navigate("/Profile")
           }
       else{
@@ -26,6 +25,7 @@ function RegisterAuth() {
       }
       } catch (error) {
         console.error("Error fetching user or auth:", error);
+        navigate("/Login")
       }
         }
   return (

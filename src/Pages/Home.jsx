@@ -18,26 +18,26 @@ function Home() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const userLogin = useCallback(async()=>{
-    try{
-      const userdata = await authservice.getCurrentUser()
-      if(userdata){
-        dispatch(login(userdata))
-        console.log(userdata);
+  // const userLogin = useCallback(async()=>{
+  //   try{
+  //     const userdata = await authservice.getCurrentUser()
+  //     if(userdata){
+  //       dispatch(login(userdata))
+  //       console.log(userdata);
         
-      }
-      else{
-        navigate("/Login")
-      }
-    }
-    catch(e){
-      navigate("/Login")
-    }
-  },[dispatch,navigate] );
+  //     }
+  //     else{
+  //       navigate("/Login")
+  //     }
+  //   }
+  //   catch(e){
+  //     navigate("/Login")
+  //   }
+  // },[dispatch,navigate] );
 
-  useEffect(()=>{
-    userLogin()
-  },[userLogin])
+  // useEffect(()=>{
+  //   userLogin()
+  // },[userLogin])
 
   useGSAP(()=>{
     gsap.from('#hero',{
@@ -83,8 +83,8 @@ function Home() {
      <Card user="Get your daily workdone" detail="Get your self register to find more opportunity." src={register} page={"doc2"}/>
     </div>
       <VendorsList className="h-[50vh] overflow-scroll border-2 border-gray-300"/>
-    <Whyuse/>
-    <FeedbackReview/>
+      <Whyuse/>
+      <FeedbackReview/>
 
     </div>
     </>

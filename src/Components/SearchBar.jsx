@@ -60,7 +60,7 @@ function SearchBar() {
     setSearchItem(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit =(event) => {
     event.preventDefault();
     dispatch(search({ searchKey: searchItem }));
     navigate("/vendors");

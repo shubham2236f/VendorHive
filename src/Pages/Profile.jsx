@@ -5,9 +5,11 @@ import { Query } from 'appwrite'
 import  {Edit,Loader}  from '../Components/index.js'
 import { useNavigate } from 'react-router-dom'
 
+
 function Profile() {
     const navigate = useNavigate();
     const [userdata , setuserdata]  = useState("");
+
     const getdata= async()=>{
         try{
         const response = await authservice.getCurrentUser()
@@ -17,8 +19,7 @@ function Profile() {
         }
     }
     catch(error){
-        console.log(error);
-        
+        console.log(error);    
     }
     }
     useEffect(()=>{

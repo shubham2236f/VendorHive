@@ -1,15 +1,39 @@
 import React from 'react'
 import service from '@/appwrite/config'
-import { useState } from 'react';
+import authservice from '@/appwrite/auth';
+import { useState,useCallback,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { login } from '@/store/authSlice.js'
 
 function Feedback() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     Name: '',
     Email:'',
     Feedback:'',
   });
+
+  const userLogin = useCallback(async()=>{
+    try{
+      const userdata = await authservice.getCurrentUser()
+      if(userdata){
+        dispatch(login(userdata))
+        console.log(userdata);
+      }
+      else{
+        navigate("/Login")
+      }
+    }
+    catch(e){
+      navigate("/Login")
+    }
+  }, [dispatch, navigate]);
+
+  useEffect(()=>{
+    userLogin()
+  },[userLogin])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
