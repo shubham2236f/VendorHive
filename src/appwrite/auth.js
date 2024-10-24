@@ -66,8 +66,10 @@ export class AuthService{
         // );
         return this.account.createOAuth2Session(
             "google",
-            "http://localhost:5173",
-            "http://localhost:5173/auth"
+            // "http://localhost:5173",
+            // "http://localhost:5173/auth",
+            "https://vendor-hive-d292.vercel.app/",
+            "https://vendor-hive-d292.vercel.app/auth"
             
         );
         } catch (error) {
