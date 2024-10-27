@@ -1,6 +1,7 @@
 import React from 'react'
 import cycle from "./Media/cyclist.gif"
 import car from "./Media/volks.gif"
+import backimg from "./Media/footer_bg.png"
 import { Link } from 'react-router-dom'
 import { Briefcase } from 'lucide-react';
 
@@ -11,9 +12,14 @@ const whatsappUrl =
 
 function Footer() {
   return (
-        <footer className="bg-blue-100 sm:py-10">
+        <footer className="bg-blue-100 ">
           <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 
-          bg-[url(C:\Users\shubham\Desktop\React\hireup\src\Components\Media\footer_bg.png)] bg-no-repeat">
+           bg-no-repeat"
+          style={{
+              backgroundImage: `url(${backimg})`,
+              backgroundSize: 'fit',
+              
+            }}>
             <div className="md:flex md:justify-between">
               <div className="mb-6 md:mb-0">
                 <a href="C:\Users\shubham\Desktop\React\hireup\src\Components\Home.jsx" className="flex items-center">

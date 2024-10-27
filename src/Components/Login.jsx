@@ -1,5 +1,6 @@
 import React from 'react'
 import google from './Media/google.png'
+import backimg from './Media/bg.avif'
 import authservice from '../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
 function Login() {
@@ -10,8 +11,13 @@ function Login() {
   return (
    <main>
   
-    <div className='h-[100vh] w-[100vw] bg-[url(C:\Users\shubham\Desktop\React\hireup\src\Components\Media\bg.avif)]
-    bg-cover bg-no-repeat flex justify-center items-center'>
+    <div className='h-[100vh] w-[100vw]
+    bg-cover bg-no-repeat flex justify-center items-center'
+    style={{
+        backgroundImage: `url(${backimg})`,
+        backgroundSize: 'fit',
+        
+      }}>
           <div className='text-center absolute backdrop-blur-md backdrop-contrast-50 py-1 text-white 
           top-0 font-semibold text-4xl w-[100vw]'>
         <h1 >vendors Hive</h1>
